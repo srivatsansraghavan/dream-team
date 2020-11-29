@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+* {
+    font-family: "Arvo", sans-serif;
+}
+nav {
+    background-color: rgb(45, 42, 60);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    color: white;
+
+}
+
+/* Logo and dropdown */
+.logo {
+    display: flex;
+    width: 150px;
+    height: 180px;
+}
+.logo-dropdown{
+    display: flex;
+    margin-left: 1.5%;
+    width: 75%;
+    align-items: center;
+}
+
+/* Searchbar */
+.search-bar{
+    background-color: rgb(45, 42, 60);
+    border: 1px solid rgb(134, 125, 179);
+    color: white;
+    width: 200px;
+    height: 25px;
+    text-align: center;
+}
+.search-bar:focus{
+    text-align: left;
+}.search{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2%;
+    text-align: center;
+}
+
+/* User img and name */
+.user-signout-container {
+    display: flex;
+    width: 25%;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.navbar-user {
+    display: flex;
+    justify-content: flex-end;
+    margin: 3% 22% 0 0;
+}
+
+.nav-user-img {
+    margin-top: 15%;
+    width: 4vw;
+    height: 70%;
+}
+
+.username-text {
+    position: relative;
+    margin: 1% 1% 0% 1%;
+    font-size: 28px;
+    left: 26%;
+    text-transform: capitalize;
+}
+
+.links {
+    padding: 1.1em 1.5em 1.1em 1.3em;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: "Arvo", sans-serif;
+    color: rgb(255, 255, 255);
+    background-color: rgb(174, 152, 174);
+    border: 1px outset rgba(80, 63, 80, 0.25); 
+    border-radius: .6em;
+}
+.faq-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.single-faq {
+    margin: 3%;
+}
+
+.nav-header {
+    font-family: 'Amatic SC', cursive;
+    font-size: 3em;
+    padding: 2%;
+}

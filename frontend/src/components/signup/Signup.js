@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Signup.css';
+import {useHistory} from "react-router-dom"
 
 const Signup = () => {
+    let history = useHistory();
     const [username, setUser] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -9,15 +12,25 @@ const Signup = () => {
 
     const getResponse = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:5000/signup', {
+        axios.post('http://localhost:5000/users/signup', {
             username: username,
-            email: email,
+            emailAddress: email,
             password: password,
-            passwordCheck: passwordCheck
+            passwordCheck: passwordCheck,
+            reviewer: false
         }).then((res) => {
-            console.log(res.data)
+            console.log(res.data.result);
+            if (res.data.status == 'OK') {
+                sessionStorage.setItem('loggedIn', 'true');
+                sessionStorage.setItem('email', res.data.emailAddress);
+                sessionStorage.setItem('reviewer', res.data.reviewer);
+                history.push('/home');
+            } else {
+                history.push('/signup');
+            }
         })
     };
+
     const onChangeHandler = (event) => {
         if (event.target.id === "username") {
             setUser(event.target.value)
@@ -29,11 +42,11 @@ const Signup = () => {
             setPasswordCheck(event.target.value)
         }
     }
+
     return (
         <div className="signup">
-            <h1>Sign Up</h1>
-            <form onSubmit={getResponse}>
-                <ul>
+            <h1 className="signup-title">Sign Up</h1>
+            <form onSubmit={getResponse} className="signup-form">
                     <label htmlFor="username">Create a username</label>
                     <input id="username" type="text" name="username" placeholder="username" onChange={onChangeHandler}></input>
 
@@ -41,14 +54,14 @@ const Signup = () => {
                     <input id="email" type="email" name="email" placeholder="email" onChange={onChangeHandler}></input>
 
                     <label htmlFor="password">Create a password</label>
-                    <input id="password" type="text" name="password" placeholder="password" onChange={onChangeHandler}></input>
+                    <input id="password" type="password" name="password" placeholder="password" onChange={onChangeHandler}></input>
 
                     <label htmlFor="passwordCheck">Re-enter the password</label>
-                    <input id="passwordCheck" type="text" name="passwordCheck" placeholder="passwordCheck" onChange={onChangeHandler}></input>
+                    <input id="passwordCheck" type="password" name="passwordCheck" placeholder="passwordCheck" onChange={onChangeHandler}></input>
 
+                    <input type="submit" value="Submit"></input>
 
-                    <input type="submit" value="submit"></input>
-                </ul>
+                    <a href="/" className="login-page">Already have an account?</a>
             </form>
         </div>
     );
